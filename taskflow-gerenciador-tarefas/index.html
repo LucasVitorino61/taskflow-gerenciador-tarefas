@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TaskFlow: gerencie tarefas, prioridades e prazos em um só lugar.">
+  <title>TaskFlow | Gerenciador de Tarefas</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="TaskFlow, início">
+        <span class="brand-icon">✓</span>
+        <span>TaskFlow</span>
+      </a>
+      <span class="topbar-label">Meu espaço de trabalho</span>
+    </header>
+
+    <main class="container">
+      <section class="welcome">
+        <div>
+          <p class="eyebrow">ORGANIZE SEU DIA</p>
+          <h1>Minhas tarefas<span class="accent">.</span></h1>
+          <p class="subtitle">Planeje, acompanhe e conclua seus objetivos.</p>
+        </div>
+        <div class="date-card">
+          <span>HOJE</span>
+          <strong id="today"></strong>
+        </div>
+      </section>
+
+      <section class="stats" aria-label="Resumo das tarefas">
+        <article class="stat-card">
+          <span class="stat-icon purple">▤</span>
+          <div><p>Total de tarefas</p><strong id="totalCount">0</strong></div>
+        </article>
+        <article class="stat-card">
+          <span class="stat-icon orange">◷</span>
+          <div><p>Pendentes</p><strong id="pendingCount">0</strong></div>
+        </article>
+        <article class="stat-card">
+          <span class="stat-icon green">✓</span>
+          <div><p>Concluídas</p><strong id="completedCount">0</strong></div>
+        </article>
+      </section>
+
+      <section class="workspace">
+        <div class="section-heading">
+          <div>
+            <h2>Lista de tarefas</h2>
+            <p>Suas atividades em um só lugar.</p>
+          </div>
+          <button class="primary-button" id="newTaskButton" type="button">
+            <span>+</span> Nova tarefa
+          </button>
+        </div>
+
+        <form id="taskForm" class="task-form" hidden>
+          <h3 id="formTitle">Adicionar tarefa</h3>
+          <label for="taskTitle">Título</label>
+          <input id="taskTitle" type="text" maxlength="100"
+            placeholder="Ex.: Estudar JavaScript" required>
+
+          <label for="taskDescription">Descrição</label>
+          <textarea id="taskDescription" maxlength="500" rows="3"
+            placeholder="Descreva sua tarefa (opcional)"></textarea>
+
+          <div class="form-row">
+            <div>
+              <label for="taskPriority">Prioridade</label>
+              <select id="taskPriority">
+                <option value="low">Baixa</option>
+                <option value="medium" selected>Média</option>
+                <option value="high">Alta</option>
+              </select>
+            </div>
+            <div>
+              <label for="taskDate">Prazo</label>
+              <input id="taskDate" type="date">
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="secondary-button" id="cancelButton">
+              Cancelar
+            </button>
+            <button type="submit" class="primary-button" id="saveButton">
+              Salvar tarefa
+            </button>
+          </div>
+        </form>
+
+        <div class="toolbar">
+          <label class="search-box">
+            <span aria-hidden="true">⌕</span>
+            <input id="searchInput" type="search"
+              placeholder="Buscar tarefas..." aria-label="Buscar tarefas">
+          </label>
+          <div class="filters" role="group" aria-label="Filtrar tarefas">
+            <button type="button" class="filter-button active" data-filter="all">
+              Todas
+            </button>
+            <button type="button" class="filter-button" data-filter="pending">
+              Pendentes
+            </button>
+            <button type="button" class="filter-button" data-filter="completed">
+              Concluídas
+            </button>
+          </div>
+        </div>
+
+        <div class="task-list" id="taskList" aria-live="polite"></div>
+
+        <footer class="list-footer">
+          <span id="listSummary">Nenhuma tarefa cadastrada</span>
+          <button type="button" id="clearCompleted" class="text-button">
+            Limpar concluídas
+          </button>
+        </footer>
+      </section>
+
+      <footer class="app-footer">
+        Desenvolvido com HTML, CSS e JavaScript · TaskFlow
+      </footer>
+    </main>
+  </div>
+</body>
+</html>
